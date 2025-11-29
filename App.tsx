@@ -9,22 +9,40 @@ import UpgradeCard from './components/UpgradeCard';
 
 type Tab = 'market' | 'drill' | 'upgrade';
 
+const SAVE_KEY = 'OIL_TYCOON_SAVE_V1';
+
+const loadGameData = () => {
+  try {
+    const saved = localStorage.getItem(SAVE_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch (e) {
+    console.error("Failed to load game data", e);
+  }
+  return null;
+};
+
 const App: React.FC = () => {
   // --- State ---
-  const [lang, setLang] = useState<Language>('ko'); 
+  const [lang, setLang] = useState<Language>(() => loadGameData()?.lang || 'ko'); 
   const t = TRANSLATIONS[lang] || TRANSLATIONS['en']; 
   const [activeTab, setActiveTab] = useState<Tab>('drill');
   const [upgradeCategory, setUpgradeCategory] = useState<UpgradeCategory>('BASIC');
 
-  const [gameState, setGameState] = useState<GameState>({
-    money: 0,
-    oil: 0,
-    totalOilMined: 0,
-    startTime: Date.now(),
-    drillTier: DrillTierId.RUSTY,
+  const [gameState, setGameState] = useState<GameState>(() => {
+    const saved = loadGameData();
+    return saved?.gameState || {
+      money: 0,
+      oil: 0,
+      totalOilMined: 0,
+      startTime: Date.now(),
+      drillTier: DrillTierId.RUSTY,
+    };
   });
 
-  const [upgrades, setUpgrades] = useState<Record<UpgradeType, UpgradeStats>>(INITIAL_UPGRADES);
+  const [upgrades, setUpgrades] = useState<Record<UpgradeType, UpgradeStats>>(() => {
+    const saved = loadGameData();
+    return saved?.upgrades ? { ...INITIAL_UPGRADES, ...saved.upgrades } : INITIAL_UPGRADES;
+  });
   const [marketPrice, setMarketPrice] = useState<number>(INITIAL_MARKET_PRICE);
   const [marketHistory, setMarketHistory] = useState<MarketPoint[]>([]);
   const [isDrilling, setIsDrilling] = useState<boolean>(false);
@@ -238,6 +256,25 @@ const App: React.FC = () => {
       return newHistory.length > 20 ? newHistory.slice(1) : newHistory;
     });
   }, [marketPrice]);
+
+  // Auto-save
+  useEffect(() => {
+    const save = () => {
+      const data = {
+        gameState,
+        upgrades,
+        lang
+      };
+      localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+    };
+    // Save periodically to avoid excessive writes, but also save on unmount/refresh ideally.
+    // Since we can't easily hook into "beforeunload" reliably for state in React without refs,
+    // we'll just throttle the save to every 1 second or so, or just save on every change if performance allows.
+    // Given the simple data, saving on every change is likely fine, but let's debounce slightly to be safe.
+    
+    const timeout = setTimeout(save, 500);
+    return () => clearTimeout(timeout);
+  }, [gameState, upgrades, lang]);
 
   const getNextTier = () => {
     const tiers = Object.values(DRILL_TIERS);
