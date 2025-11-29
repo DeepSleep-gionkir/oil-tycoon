@@ -43,11 +43,12 @@ const DrillRig: React.FC<DrillRigProps> = ({
       {/* Main SVG Area */}
       <div className="relative w-full flex-1 flex items-center justify-center">
         <svg
-          viewBox="0 0 400 300"
+          viewBox="0 0 360 330"
           className="w-full h-full object-cover z-10"
           preserveAspectRatio="xMidYMid slice"
           xmlns="http://www.w3.org/2000/svg"
         >
+          <g transform="scale(0.9, 1)">
           <defs>
             {/* Sky Gradient */}
             <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -198,6 +199,7 @@ const DrillRig: React.FC<DrillRigProps> = ({
              </g>
           )}
 
+          </g>
         </svg>
 
         {/* Level Badge (Floating Overlay) */}
