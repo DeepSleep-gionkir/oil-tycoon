@@ -502,7 +502,7 @@ const App: React.FC = () => {
           <div className={`flex-1 relative ${activeTab === 'drill' ? 'overflow-hidden' : 'overflow-y-auto p-4 pb-20'}`}>
             {activeTab === 'market' && renderMarketPanel()}
             {activeTab === 'drill' && (
-               <div className="absolute inset-0 pb-16">
+               <div className="absolute inset-x-0 top-0 bottom-16">
                  {renderDrillPanel()}
                </div>
             )}
