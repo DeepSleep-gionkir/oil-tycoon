@@ -45,7 +45,7 @@ const DrillRig: React.FC<DrillRigProps> = ({
         <svg
           viewBox="0 0 400 300"
           className="w-full h-full object-cover z-10"
-          preserveAspectRatio="none"
+          preserveAspectRatio="xMidYMid slice"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
