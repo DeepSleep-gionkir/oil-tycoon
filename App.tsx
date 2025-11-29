@@ -436,7 +436,7 @@ const App: React.FC = () => {
   const storagePercent = maxStorage > 0 ? (gameState.oil / maxStorage) * 100 : 0;
 
   return (
-    <div className="flex flex-col h-screen bg-slate-950 text-slate-200 overflow-hidden">
+    <div className="flex flex-col h-[100dvh] bg-slate-950 text-slate-200 overflow-hidden">
       
       <div className="fixed top-16 lg:top-4 right-4 z-[60] space-y-2 pointer-events-none w-full max-w-sm px-4 lg:px-0">
         {notifications.map(n => (
@@ -499,10 +499,10 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto bg-slate-950 p-4 pb-20">
-            {activeTab === 'market' && renderMarketPanel()}
+          <div className="flex-1 overflow-y-auto bg-slate-950 pb-20">
+            {activeTab === 'market' && <div className="p-4 h-full">{renderMarketPanel()}</div>}
             {activeTab === 'drill' && <div className="h-full">{renderDrillPanel()}</div>}
-            {activeTab === 'upgrade' && renderUpgradePanel()}
+            {activeTab === 'upgrade' && <div className="p-4 h-full">{renderUpgradePanel()}</div>}
           </div>
 
           <div className="absolute bottom-0 left-0 w-full bg-slate-900 border-t border-slate-800 h-16 flex justify-around items-center z-40 pb-safe">

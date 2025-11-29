@@ -4,3 +4,9 @@
 
 /* Custom styles from original index.html style block can be moved here or kept in index.html. 
    For now, I'll keep them in index.html to minimize drift, but this file is needed for Tailwind. */
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
