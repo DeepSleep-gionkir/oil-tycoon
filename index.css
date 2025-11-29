@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles from original index.html style block can be moved here or kept in index.html. 
+   For now, I'll keep them in index.html to minimize drift, but this file is needed for Tailwind. */

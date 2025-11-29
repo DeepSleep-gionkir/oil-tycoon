@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oil Tycoon Pro</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&family=Inter:wght@400;600;800&family=Noto+Sans+KR:wght@400;700&display=swap');
+      
+      body {
+        font-family: 'Inter', 'Noto Sans KR', sans-serif;
+        background-color: #0f172a; /* Slate 900 */
+        color: #e2e8f0;
+      }
+      h1, h2, h3, .font-tech {
+        font-family: 'Chakra Petch', 'Noto Sans KR', sans-serif;
+      }
+      
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1e293b;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #475569;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #64748b;
+      }
+
+      /* --- DRILL ANIMATIONS --- */
+      
+      /* Simulates a screw turning by moving dashed lines downwards */
+      /* FIXED: dasharray is 15 15 (total 30). Animation must move 30 to loop perfectly. */
+      @keyframes drill-auger {
+        from { stroke-dashoffset: 0; }
+        to { stroke-dashoffset: 30; } 
+      }
+
+      .animate-drill-auger {
+        animation: drill-auger 0.5s linear infinite;
+        /* Note: stroke-dasharray is set inline in React component to 15 15 */
+      }
+
+      @keyframes oil-gush {
+        0% { stroke-dashoffset: 20; opacity: 0.5; }
+        100% { stroke-dashoffset: 0; opacity: 1; }
+      }
+
+      .animate-oil-flow {
+        stroke-dasharray: 5;
+        animation: oil-gush 0.3s linear infinite;
+      }
+
+      /* --- NATURE ANIMATIONS --- */
+      @keyframes cloud-move {
+        from { transform: translateX(-150px); }
+        to { transform: translateX(550px); }
+      }
+
+      .animate-cloud {
+        animation: cloud-move 60s linear infinite;
+      }
+      
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
