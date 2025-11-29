@@ -104,6 +104,10 @@ const DrillRig: React.FC<DrillRigProps> = ({
 
             <path d="M 360 250 L 370 230 L 380 250 Z" fill="#166534" />
             <rect x="368" y="250" width="4" height="5" fill="#3f2e26" />
+
+            {/* New Tree near Drill (Right side, background layer) */}
+            <path d="M 230 250 L 245 200 L 260 250 Z" fill="#14532d" />
+            <rect x="242" y="250" width="6" height="5" fill="#3f2e26" />
           </g>
 
           {/* --- GROUND (SOIL) --- */}
