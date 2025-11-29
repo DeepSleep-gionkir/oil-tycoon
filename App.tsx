@@ -273,8 +273,8 @@ const App: React.FC = () => {
   };
 
   const renderMarketPanel = () => (
-    <div className="space-y-4 md:space-y-6 h-full flex flex-col">
-      <div className="hidden md:block bg-slate-800 p-4 rounded-lg border border-slate-700">
+    <div className="space-y-4 lg:space-y-6 h-full flex flex-col">
+      <div className="hidden lg:block bg-slate-800 p-4 rounded-lg border border-slate-700">
         <h2 className="text-slate-400 text-xs uppercase tracking-wide font-bold mb-1">{t.treasury}</h2>
         <div className="text-3xl text-emerald-400 font-mono font-bold">${gameState.money.toLocaleString()}</div>
       </div>
@@ -368,7 +368,7 @@ const App: React.FC = () => {
 
     return (
       <div className="flex flex-col h-full">
-        <h2 className="text-xl font-tech text-white mb-4 hidden md:flex items-center gap-2 sticky top-0 bg-slate-900 z-10 py-2">
+        <h2 className="text-xl font-tech text-white mb-4 hidden lg:flex items-center gap-2 sticky top-0 bg-slate-900 z-10 py-2">
           <FaIndustry className="text-amber-500" />
           {t.upgrades}
         </h2>
@@ -438,7 +438,7 @@ const App: React.FC = () => {
   return (
     <div className="flex flex-col h-screen bg-slate-950 text-slate-200 overflow-hidden">
       
-      <div className="fixed top-16 md:top-4 right-4 z-[60] space-y-2 pointer-events-none w-full max-w-sm px-4 md:px-0">
+      <div className="fixed top-16 lg:top-4 right-4 z-[60] space-y-2 pointer-events-none w-full max-w-sm px-4 lg:px-0">
         {notifications.map(n => (
           <div key={n.id} className={`
             px-4 py-3 rounded shadow-lg border-l-4 pointer-events-auto animate-bounce backdrop-blur-md
@@ -451,9 +451,9 @@ const App: React.FC = () => {
         ))}
       </div>
 
-      <div className="flex flex-col md:flex-row h-full">
+      <div className="flex flex-col lg:flex-row h-full">
 
-        <aside className="hidden md:flex w-1/3 lg:w-1/4 bg-slate-900 border-r border-slate-800 p-6 flex-col overflow-y-auto shrink-0 z-20">
+        <aside className="hidden lg:flex w-1/3 lg:w-1/4 bg-slate-900 border-r border-slate-800 p-6 flex-col overflow-y-auto shrink-0 z-20">
           <header className="mb-6">
             <h1 className="text-3xl font-bold text-amber-500 font-tech">{t.title}</h1>
             <span className="text-slate-400 text-xs tracking-widest block">{t.edition}</span>
@@ -467,15 +467,15 @@ const App: React.FC = () => {
           {renderMarketPanel()}
         </aside>
 
-        <main className="hidden md:block w-full md:w-1/3 lg:w-2/4 bg-slate-950 relative border-r border-slate-800">
+        <main className="hidden lg:block w-full lg:w-2/4 bg-slate-950 relative border-r border-slate-800">
            {renderDrillPanel()}
         </main>
 
-        <aside className="hidden md:block w-full md:w-1/3 lg:w-1/4 bg-slate-900 p-6 overflow-hidden border-t md:border-t-0 border-slate-800">
+        <aside className="hidden lg:block w-full lg:w-1/4 bg-slate-900 p-6 overflow-hidden border-t lg:border-t-0 border-slate-800">
           {renderUpgradePanel()}
         </aside>
 
-        <div className="md:hidden flex-1 flex flex-col relative overflow-hidden">
+        <div className="lg:hidden flex-1 flex flex-col relative overflow-hidden">
           
           <div className="bg-slate-900 border-b border-slate-800 p-3 flex justify-between items-center z-30 shadow-md">
             <div className="flex flex-col">
